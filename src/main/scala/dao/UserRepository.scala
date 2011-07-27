@@ -8,3 +8,11 @@ trait UserRepositoryComponent { // For expressing dependencies
     def find(username: String): Userx
   }
 }
+// Component definition, as before
+trait UserAuthorizationComponent {
+   def userAuthorization: UserAuthorization
+ 
+   trait UserAuthorization {
+      def authorize(user: Userx)
+   }
+}

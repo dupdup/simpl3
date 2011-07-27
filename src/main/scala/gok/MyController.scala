@@ -10,18 +10,20 @@ import model._
 case class Widget(i:Int,x:String)
 	
 @Path("/todo")
-class MyController(gson:Gson){
-  def this()= this(new Gson())
+class MyController(){
+  val gson = new Gson
   val env = new UserAuthorizationComponentImpl
             with UserRepositoryComponentHibernateImpl
  
   @GET
   @Produces(Array("application/json"))
-  def getr:String = gson.toJson(Widget(3,"ds"));
+  def getr:String = gson.toJson(Widget(3,"ds"))
 
   @GET
   @Path("/db")
   @Produces(Array("application/json"))
-  def getfromDB:String = gson.toJson(env.userRepository.find("doruk"));
+  def getfromDB:String = {
+    gson.toJson(env.userRepository.find("doruk"))
+    }
 
 }

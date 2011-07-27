@@ -1,27 +1,25 @@
 package dao.impl
-import dao.UserRepositoryComponent
+import dao._
 import model._
+import com.twitter.querulous.evaluator.QueryEvaluator
 
 trait UserRepositoryComponentHibernateImpl
                 extends UserRepositoryComponent {
    def userRepository = new UserRepositoryImpl
- 
+   val queryEvaluator = QueryEvaluator("localhost:3306/eczane", "root", "root")
    class UserRepositoryImpl extends UserRepository {
+     
      def find(username: String): Userx = {
-         println("Find with Hibernate: " + username)
-         new Userx(username)
+       val users = queryEvaluator.select("SELECT name FROM eczane.medicine") { row =>
+       	new Userx(row.getString("name"))
+       }
+//       queryEvaluator.execute("INSERT INTO eczane.medicine VALUES (?, ?)", 2, "Jacques")
+       println("Find with Hibernate: " + username)
+       users(0)
       }
    }
 }
 
-// Component definition, as before
-trait UserAuthorizationComponent {
-   def userAuthorization: UserAuthorization
- 
-   trait UserAuthorization {
-      def authorize(user: Userx)
-   }
-}
 
 // Component implementation
 trait UserAuthorizationComponentImpl
