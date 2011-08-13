@@ -9,6 +9,12 @@ trait UserRepositoryComponentHibernateImpl
    val queryEvaluator = QueryEvaluator("localhost:3306/eczane", "root", "root")
    class UserRepositoryImpl extends UserRepository {
      
+     def findAll(): Seq[CustomerWithDate] = {
+       queryEvaluator.select("SELECT id,name FROM eczane.medicine") { row =>
+       	new CustomerWithDate(row.getInt(0),row.getString("name"))
+       }
+      }
+     
      def find(username: String): Userx = {
        val users = queryEvaluator.select("SELECT name FROM eczane.medicine") { row =>
        	new Userx(row.getString("name"))
@@ -19,8 +25,6 @@ trait UserRepositoryComponentHibernateImpl
       }
    }
 }
-
-
 // Component implementation
 trait UserAuthorizationComponentImpl
                 extends UserAuthorizationComponent {

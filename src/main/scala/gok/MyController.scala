@@ -25,5 +25,11 @@ class MyController(){
   def getfromDB:String = {
     gson.toJson(env.userRepository.find("doruk"))
     }
+  @GET
+  @Path("/customer")
+  @Produces(Array("application/json"))
+  def getAllCustomersOrderByMedicineDate:String = {
+    gson.toJson(env.userRepository.findAll())
+    }
 
 }
