@@ -24,7 +24,8 @@ libraryDependencies ++= Seq(
 	"commons-dbcp" % "commons-dbcp" % "1.4",
 	"com.twitter" % "querulous" % "2.1.5",
 	"com.twitter" % "util-core" % "1.7.0",
-	"org.mortbay.jetty" % "jetty" % "6.1.25" % "jetty"
+	"org.mortbay.jetty" % "jetty" % "6.1.25" % "jetty",
+	"net.debasishg" % "sjson_2.9.0" % "0.12"
 	)
 
 seq(webSettings :_*)
