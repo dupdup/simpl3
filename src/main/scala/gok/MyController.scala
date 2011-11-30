@@ -10,6 +10,7 @@ import DefaultProtocol._
 import dao.impl._
 import model._
 import model.CustomerWithDate
+import javax.ws.rs.core.Response
 
 case class Widget(i:Int,x:String)
 	
@@ -19,8 +20,8 @@ class MyController(){
   val gson = new Gson
   implicit val WidgetFormat: Format[Widget] = asProduct2("i", "x")(Widget)(Widget.unapply(_).get)
   implicit val CustomerWithDateFormat: Format[CustomerWithDate] = asProduct2("name", "va")(CustomerWithDate)(CustomerWithDate.unapply(_).get)
-  val env = new UserAuthorizationComponentImpl
-            with UserRepositoryComponentHibernateImpl
+  val env = new AccountAuthorizationComponentImpl
+            with AccountRepositoryComponentHibernateImpl
  
   @GET
   @Produces(Array("application/json"))
@@ -29,9 +30,20 @@ class MyController(){
   @GET
   @Path("/db")
   @Produces(Array("application/json"))
-  def getfromDB:String = {
-    gson.toJson(env.userRepository.find("doruk"))
+  def getfromDB:Response = {
+//    gson.toJson(env.userRepository.find("doruk"))
+    Response.ok(env.userRepository.find("doruk")).build();
     }
+  
+  @GET
+  @Path("/db")
+  @Produces(Array("application/json"))
+  def getAuthentication:Response = {
+//    gson.toJson(env.userRepository.find("doruk"))
+    
+    Response.ok(env.userRepository.find("doruk")).build();
+    }
+  
   @GET
   @Path("/customer")
   @Produces(Array("application/json"))

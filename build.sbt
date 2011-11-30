@@ -25,7 +25,9 @@ libraryDependencies ++= Seq(
 	"com.twitter" % "querulous" % "2.1.5",
 	"com.twitter" % "util-core" % "1.7.0",
 	"org.mortbay.jetty" % "jetty" % "6.1.25" % "jetty",
-	"net.debasishg" % "sjson_2.9.0" % "0.12"
+	"net.debasishg" % "sjson_2.9.0" % "0.12",
+	"org.scalatest" %% "scalatest" % "1.6.1",
+	"org.mockito" % "mockito-core" % "1.8.5"
 	)
 
 seq(webSettings :_*)
