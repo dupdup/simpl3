@@ -6,7 +6,7 @@ trait AccountRepositoryComponent { // For expressing dependencies
 
 	trait AccountRepository { // Interface exposed to the user
 	def find(username: String): Account
-	def findAll(): List[CustomerWithDate]
+//	def findAll(): List[CustomerWithDate]
 }
 }
 // Component definition, as before

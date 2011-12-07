@@ -9,7 +9,6 @@ import JsonSerialization._
 import DefaultProtocol._
 import dao.impl._
 import model._
-import model.CustomerWithDate
 import javax.ws.rs.core.Response
 import javax.ws.rs.QueryParam
 
@@ -26,7 +25,7 @@ class AuthMe(){
   def getToken(@QueryParam("username") username:String, 
       @QueryParam("password") password:String):Response = {
     val token = env.userAuthorization.authorize(username,password)
-	Response.ok(token).build()
+	Response.ok(token.toString()).build()
   }
     
   @GET
